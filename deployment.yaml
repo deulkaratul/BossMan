@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: atul-bhai
+  labels:
+    app: atul-bhai
+spec:
+  containers:
+  - name: atul-bhai
+    image: yugashann/atulbhai
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: atul-bhai-service
+spec:
+  selector:
+    app: atul-bhai
+  ports:
+  - port: 4800
+    targetPort: 80
+  type: LoadBalancer

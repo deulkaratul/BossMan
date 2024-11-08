@@ -1,27 +1,26 @@
-# AngularPractise
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
-## Development server
+Steps 
+1. Build 
+    1.1 npm install 
+    1.2 npm run build  (code is in dist/angular-practise)
+2. Create docker file 
+    2.1 get NGNIX image 
+    2.2 set NGNIX hosting html folder as the working directory
+    2.3 COPY dist/angular-practise to hosting folder
+    2.4 expose port 80 on the container image
+    2.5 use CMD to start ngnix 
+3. Build the container 
+    3.1 docker build -t username/yourImageName
+    3.2 docker push    ( push image to public docker registry)
+4. Deploy to K8 mini Kube
+    4.1. create Yaml file
+    4.2. add POD specification and image to use (docker image that you pushed)
+    4.3  add Service to expose POD outside cluster (mini kube cluster)
+    4.5 kubectl apply -f deployment.yaml
+    4.6 kubectl get pod  (check if pod is running)
+    4.7 kubectl get service (check if service created correctly)
+    4.8 minikube tunnel  (to map PC port to minikube IPCluster service port)
+5. Check if website load 
+    5.1 browse http:localhost:4800
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
